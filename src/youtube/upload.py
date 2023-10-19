@@ -106,10 +106,7 @@ then retrying to upload video..."
         """
         Function to properly execute request to upload.
         """
-        # Create tags, splitting string by ','
-        tags = None
-        if self.args.keywords:
-            tags = self.args.keywords.split(",")
+        tags = self.args.keywords.split(",") if self.args.keywords else None
         # Body from request
         body = {
             "snippet": {
