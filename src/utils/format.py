@@ -42,15 +42,13 @@ def title(file: str, keywords_: str = keywords()) -> str:
     -------
     Formatted title string
     """
-    match = search(r'from_(.+?)-to', file)
-    # If returns value, extract string and format as desired
-    if match:
+    if match := search(r'from_(.+?)-to', file):
         group_ = match.group(1)
         video_str = group_.replace('_', ' ').title()
     # Add new words for final title
     expressions = ["AWESOME", "FANTASTIC", "FASCINATING", "INCREDIBLE", "OMG", "WOW"]
     random_ = choice(expressions)
-    hashtags = ' '.join(['#' + word for word in keywords_.split(',')])
+    hashtags = ' '.join([f'#{word}' for word in keywords_.split(',')])
     final_title = f"{random_}! {video_str} created by Stable Diffusion AI {hashtags}"
     # Log and return value
     logger.debug(f"[format_title] The 'title' in shorts will be '{final_title}'.")

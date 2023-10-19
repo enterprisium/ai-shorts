@@ -45,29 +45,24 @@ class GetVideo:
             )
             .execute()
         )
-        # Extract and return list of files
-        get_ = request.get('files', [])
-        return get_
+        return request.get('files', [])
 
     def video_folder_id(self) -> str:
         """Return last generated video folder id"""
         # Get list of folders
         video_folder = self.get_id_name(self.main_folder_id)
-        # Get and return video folder id
-        target_subfolder = str(video_folder[0]["id"])
-        return target_subfolder
+        return str(video_folder[0]["id"])
 
     def video_id(self) -> str:
         """Return video id for downloading"""
         # Get list of files in subfolder
         files = self.get_id_name(self.video_folder_id())
-        # Get and return video id
-        video = str(
+        return str(
             next(
-                (dict_['id'] for dict_ in files if dict_['name'].endswith('.mp4')), None
+                (dict_['id'] for dict_ in files if dict_['name'].endswith('.mp4')),
+                None,
             )
         )
-        return video
 
     def download(self) -> str:
         """Run method to download video from specified ID"""

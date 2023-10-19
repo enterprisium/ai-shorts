@@ -103,7 +103,7 @@ class APIAuth:
             logger.info(
                 f"[{self.__class__.__name__}] Succesfully created '{filename}' output for '{self.api}' API!"
             )
-            return str(filename)
+            return filename
         except Exception as exc:
             logger.error(
                 f"[{self.__class__.__name__}] Could not create '{filename}' output for '{self.api}' API!"
